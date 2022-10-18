@@ -26,20 +26,27 @@
                     <th>#</th>
                     <th>#</th>
                     <th>#</th>
-                    <th>#</th>
                 </tr>
             </thead>
         <tbody>";
+            $totProducts = 0;
             foreach($_SESSION['products'] as $index => $product){
                 echo "<tr>",
                     "<td>".$index."</td>",
                     "<td>".$product['name']."</td>",
-                    "<td>".$product['price']."</td>",
+                    "<td>".number_format($product['price'],2,",","&nbsp;")."&nbsp;€</td>",
                     "<td>".$product['qtt']."</td>",
-                    "<td>".$product['total']."</td>",
+                    "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>",
                     "</tr>";
+                    $totProducts += $product['total'];
             }
-            echo "</tbody></table>";
+            echo "<tr>
+                <td colspan=4>Panier total : </td>
+                <td>Panier total : </td>
+                <td>".number_format($totProducts,2,",","&nbsp;")."&nbsp;€</td>
+            </tr> 
+            </tbody>
+            </table>";
         }
     ?>
 </body>
