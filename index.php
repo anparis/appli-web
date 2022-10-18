@@ -32,12 +32,7 @@
         </p>
     </form>
     <?php
-     session_start();
-     // verifie si la cle submit existe dans le tableau   
-     if(isset($_POST['submit'])){
 
-     }
-    //  header("Location:index.php");
      ?>
 </body>
 </html>

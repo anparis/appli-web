@@ -59,3 +59,17 @@ Quand est-ce que les cookies sont transmis au serveur ?
 
 --
 Que fait la fonction header ?
+-> (Pas super compris) envoie un nouvel entête HTTP au client
+
+-- 
+A quoi sert la fonction header("Location:..."), quel numéro va être envoyé ?
+-> A rediriger le client vers la ressource précisé dans la fonction
+status code 302
+
+--
+Pourquoi vérifier les données transmises au serveur par l'envoie d'un formulaire ?
+-> 1: Provoquer des erreurs et 2: Piratage du serveur par injection de code
+
+--
+Nommer deux types de failles par injection de code
+-> XSS (Cross site scripting) ou SQL injection (écrire du SQL dans un champ afin de faire exécuter cela par la BDD)
