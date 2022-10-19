@@ -14,6 +14,7 @@
     <?php var_dump($_SESSION); ?>
     <p><a href="index.php">Revenir au commandes</a></p>
     <?php
+        // Si le tableau n'est pas set ou s'il est vide => pas de produits en session
         if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
             echo "<p>Aucun produit en session...</p>";
         }
@@ -22,10 +23,10 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>#</th>
-                    <th>#</th>
-                    <th>#</th>
-                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
                 </tr>
             </thead>
         <tbody>";
@@ -36,7 +37,14 @@
                     "<td>".$index."</td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'],2,",","&nbsp;")."&nbsp;€</td>",
-                    "<td>".$product['qtt']."</td>",
+                    "<td>". "<form method='get' action='traitement.php'>
+                        <input type='submit' name='action' value='add'
+                        class='button'/>
+                        <input type='hidden' name='id' value=$index
+                        class='button'/>
+                        </form>"
+                    .$product['qtt'].
+                    "</td>",
                     "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>",
                     "</tr>";
                     $totProducts += $product['total'];
@@ -48,15 +56,14 @@
                 <td>".number_format($totProducts,2,",","&nbsp;")."&nbsp;€</td>
             </tr> 
             </tbody>
-            </table>";
-        }
-        if(isset($_POST['dropTable'])) {
-                unset($_SESSION['products']);
+            </table><p>"."</p>";
         }
     ?>
-    <form method="post">
-        <input type="submit" name="dropTable"
-            class="button" value="Supprimer tous les produits" />
+    <form method="GET" action="traitement.php">
+        <input type="hidden" name="action" value="clear"
+            class="button"/>
+        <button>supprimer les produits</button>
     </form>
+   
 </body>
 </html>

@@ -1,6 +1,19 @@
 <?php
 session_start();
-// verifie si la clé submit existe dans le tableau   
+
+if(isset($_GET['action'])){
+    switch($_GET['action']){
+        case "add":
+            // Permet d'augmenter la qtt d'un produit
+            $_SESSION['products'][$_GET['id']]['qtt']++;
+            break;
+        case "clear":
+            //Permet d'enlever toutes entrées du tableau de session
+            unset($_SESSION['products']);
+            break;
+    }
+}
+// verifie si la clé submit existe dans le tableau crée par formulaire
 if(isset($_POST['submit'])){
 
     $name = filter_input(INPUT_POST,"name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -20,4 +33,4 @@ if(isset($_POST['submit'])){
         $_SESSION['products'][] = $product;
     }
 }
-header("Location:index.php");
+// header("Location:recap.php");
