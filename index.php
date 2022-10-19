@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <a href="recap.php">Recapitulatif de vos commandes</a>
     <h1>Ajouter un produit</h1>
     <form action="traitement.php" method="post">
         <p>
@@ -31,7 +32,6 @@
         <p>
             <input type="submit" name="submit" value="Ajouter le produit">
         </p>
-        <a href="recap.php">Recapitulatif de vos commandes</a>
     </form>
     <?php
 

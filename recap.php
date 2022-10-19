@@ -38,12 +38,18 @@
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'],2,",","&nbsp;")."&nbsp;€</td>",
                     "<td>". "<form method='get' action='traitement.php'>
-                        <input type='submit' name='action' value='add'
+                        <input type='submit' name='action' value='delete'
                         class='button'/>
                         <input type='hidden' name='id' value=$index
                         class='button'/>
                         </form>"
                     .$product['qtt'].
+                    "<form method='get' action='traitement.php'>
+                    <input type='submit' name='action' value='add'
+                    class='button'/>
+                    <input type='hidden' name='id' value=$index
+                    class='button'/>
+                    </form>".
                     "</td>",
                     "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>",
                     "</tr>";
