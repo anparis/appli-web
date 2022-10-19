@@ -31,6 +31,7 @@
         <p>
             <input type="submit" name="submit" value="Ajouter le produit">
         </p>
+        <a href="recap.php">Recapitulatif de vos commandes</a>
     </form>
     <?php
 
