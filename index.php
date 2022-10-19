@@ -8,7 +8,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<?php
+// fonction permettant de recuperer tableau de session 
+    session_start();
+?>
     <a href="recap.php">Recapitulatif de vos commandes</a>
+    <section class="choix">
     <h1>Ajouter un produit</h1>
     <form action="traitement.php" method="post">
         <p>
@@ -33,8 +38,16 @@
             <input type="submit" name="submit" value="Ajouter le produit">
         </p>
     </form>
+    </section>
+    <section>
+    <h1>Panier</h1>
+    <select name="panier" id="choix-panier">
     <?php
-
+        foreach($_SESSION['products'] as $index => $product){
+            echo "<option value=$index>".$product['name']."</option>";
+        }
      ?>
+     </select>
+     </section>
 </body>
 </html>

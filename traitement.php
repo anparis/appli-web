@@ -4,7 +4,7 @@ session_start();
 if(isset($_GET['action'])){
     switch($_GET['action']){
         case "add":
-            // verifier si le param id est bien dans l'url et si 
+            // verifier si le param id est bien dans l'url et si le produit est bien présent dans la session
             if(isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
                 // Incrémenter la qtt d'un produit
                 $_SESSION['products'][$_GET['id']]['qtt']++;
@@ -16,6 +16,7 @@ if(isset($_GET['action'])){
             break;
         case "delete":
             if(isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
+                // si qtt à 0 alors on ne peut plus diminuer
                 if($_SESSION['products'][$_GET['id']]['qtt']>0)
                     $_SESSION['products'][$_GET['id']]['qtt']--;
                 else echo "Il n'y a deja plus de ".$_SESSION['products']['name'];
@@ -53,6 +54,12 @@ if(isset($_POST['submit'])){
         //on sollicite la variable globale $_SESSION
         //sert a récuperer les produits entrés par utilisateur dans un tableau de 'products'
         $_SESSION['products'][] = $product;
+        header("Location:index.php?form=success");
+        exit();
+    }
+    else{
+        header("Location:index.php?form=error");
+        exit();
     }
 }
-header("Location:recap.php");
+header("Location:index.php");

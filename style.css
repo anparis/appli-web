@@ -1,3 +1,25 @@
+/* Index */
+.choix{
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px dashed black;
+    text-align: center;
+    width: fit-content;
+}
+
+/* Recap */
 table{
     border: collapse;
+    border-spacing: 0;
+    width: 100%;
+    text-align: left;
 }
+
+td{
+    border-top: 1px solid black;
+}
+
+td.qtt{
+    display: flex;
+}
+

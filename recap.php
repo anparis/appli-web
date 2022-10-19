@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Recapitulatif des produits</title>
 </head>
 <body>
@@ -37,18 +38,20 @@
                     "<td>".$index."</td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'],2,",","&nbsp;")."&nbsp;€</td>",
-                    "<td>". "<form method='get' action='traitement.php'>
-                        <input type='submit' name='action' value='delete'
+                    "<td class='qtt'>". "<form method='get' action='traitement.php'>
+                        <input type='hidden' name='action' value='delete'
                         class='button'/>
                         <input type='hidden' name='id' value=$index
                         class='button'/>
+                        <button class='delete'>-</button>
                         </form>"
                     .$product['qtt'].
                     "<form method='get' action='traitement.php'>
-                    <input type='submit' name='action' value='add'
+                    <input type='hidden' name='action' value='add'
                     class='button'/>
                     <input type='hidden' name='id' value=$index
                     class='button'/>
+                    <button class='add'>+</button>
                     </form>".
                     "</td>",
                     "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>",
