@@ -47,10 +47,9 @@
                         </td>
                     </tr>";
                     $totProducts += $product['total'];
-                    $nbProduits = $index+1;
             }
             echo "<tr>
-                <td>Nombres de produits : $nbProduits</td>
+                <td>Nombres de produits : ".count($_SESSION['products'])."</td>
                 <td colspan=3>Panier total : </td>
                 <td colspan=2>".number_format($totProducts,2,",","&nbsp;")."&nbsp;€</td>
             </tr> 
@@ -58,13 +57,8 @@
             </table><p>"."</p>";
         }
     ?>
-    <!-- <form method="GET" action="traitement.php">
-        <input type="hidden" name="action" value="clear"
-            class="button"/>
-        <button>supprimer les produits</button>
-    </form> -->
-
-    <a href='traitement.php?action=clear'><button>supprimer les produits</button></a>
+    <!-- Envoie de l'action clear a traitement.php -->
+    <a href="traitement.php?action=clear"><button>supprimer les produits</button></a>
 
     <section class="statut">
         <?php
