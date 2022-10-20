@@ -46,7 +46,6 @@ if(isset($_GET['action'])){
     }
 }
 
-
 // verifie si la clé submit existe dans le tableau crée par formulaire
 if(isset($_POST['submit'])){
     $name = filter_input(INPUT_POST,"name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
