@@ -12,7 +12,9 @@
     <title>Recapitulatif des produits</title>
 </head>
 <body>
-    <?php var_dump($_SESSION); ?>
+    <?php var_dump($_SESSION); 
+        var_dump($_POST);
+    ?>
     <p><a href="index.php">Revenir au commandes</a></p>
     <?php
         // Si le tableau n'est pas set ou s'il est vide => pas de produits en session
@@ -38,31 +40,22 @@
                     "<td>".$index."</td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'],2,",","&nbsp;")."&nbsp;€</td>",
-                    "<td class='qtt'>". "<form method='get' action='traitement.php'>
-                        <input type='hidden' name='action' value='delete'
-                        class='button'/>
-                        <input type='hidden' name='id' value=$index
-                        class='button'/>
-                        <button class='delete'>-</button>
-                        </form>"
+                    "<td class='qtt'>". "<a href='traitement.php?action=addQtt&id=$index'><button class='add'>-</button></a>"
                     .$product['qtt'].
-                    "<form method='get' action='traitement.php'>
-                    <input type='hidden' name='action' value='add'
-                    class='button'/>
-                    <input type='hidden' name='id' value=$index
-                    class='button'/>
-                    <button class='add'>+</button>
-                    </form>".
+                    "<a href='traitement.php?action=delQtt&id=$index'><button class='add'>+</button></a>".
                     "</td>",
                     "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>",
-                    "</tr>";
+                    //Fait passer url a traitement pour traiter l'action
+                    "<td>". "<a href='traitement.php?action=delProduit&id=$index'><button class='supprimer'>supprimer</button></a>
+                        </td>
+                    </tr>";
                     $totProducts += $product['total'];
                     $nbProduits = $index+1;
             }
             echo "<tr>
                 <td>Nombres de produits : $nbProduits</td>
                 <td colspan=3>Panier total : </td>
-                <td>".number_format($totProducts,2,",","&nbsp;")."&nbsp;€</td>
+                <td colspan=2>".number_format($totProducts,2,",","&nbsp;")."&nbsp;€</td>
             </tr> 
             </tbody>
             </table><p>"."</p>";

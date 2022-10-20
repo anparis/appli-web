@@ -3,7 +3,7 @@ session_start();
 
 if(isset($_GET['action'])){
     switch($_GET['action']){
-        case "add":
+        case "addQtt":
             // verifier si le param id est bien dans l'url et si le produit est bien présent dans la session
             if(isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
                 // Incrémenter la qtt d'un produit
@@ -14,12 +14,20 @@ if(isset($_GET['action'])){
             }
             else $_SESSION["message"] = "Action impossible";
             break;
-        case "delete":
+        case "delQtt":
             if(isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
                 // si qtt à 0 alors on ne peut plus diminuer
                 if($_SESSION['products'][$_GET['id']]['qtt']>0)
                     $_SESSION['products'][$_GET['id']]['qtt']--;
                 else echo "Il n'y a deja plus de ".$_SESSION['products']['name'];
+                header("Location: recap.php");
+                die();
+            }
+            else $_SESSION["message"] = "Action impossible";
+            break;
+        case "delProduit":
+            if(isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
+                unset($_SESSION['products'][$_GET['id']]);
                 header("Location: recap.php");
                 die();
             }
@@ -36,13 +44,13 @@ if(isset($_GET['action'])){
             break;
     }
 }
+
+
 // verifie si la clé submit existe dans le tableau crée par formulaire
 if(isset($_POST['submit'])){
-
     $name = filter_input(INPUT_POST,"name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $price = filter_input(INPUT_POST,"price",FILTER_VALIDATE_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
     $qtt = filter_input(INPUT_POST,"qtt",FILTER_VALIDATE_INT);
-
     // empêche valeurs null
     if($name && $price && $qtt){
         $product = [
@@ -62,4 +70,3 @@ if(isset($_POST['submit'])){
         exit();
     }
 }
-header("Location:index.php");

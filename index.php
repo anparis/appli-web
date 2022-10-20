@@ -39,15 +39,8 @@
         </p>
     </form>
     </section>
-    <section>
-    <h1>Panier</h1>
-    <select name="panier" id="choix-panier">
     <?php
-        foreach($_SESSION['products'] as $index => $product){
-            echo "<option value=$index>".$product['name']."</option>";
-        }
-     ?>
-     </select>
-     </section>
+        var_dump($_POST);
+    ?>
 </body>
 </html>
