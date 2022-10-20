@@ -40,13 +40,13 @@
                     "<td>".$index."</td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'],2,",","&nbsp;")."&nbsp;€</td>",
-                    "<td class='qtt'>". "<a href='traitement.php?action=addQtt&id=$index'><button class='add'>-</button></a>"
+                    "<td class='qtt'>". "<a href='traitement.php?action=delQtt&amp;id=$index'><button class='add'>-</button></a>"
                     .$product['qtt'].
-                    "<a href='traitement.php?action=delQtt&id=$index'><button class='add'>+</button></a>".
+                    "<a href='traitement.php?action=addQtt&amp;id=$index'><button class='add'>+</button></a>".
                     "</td>",
-                    "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>",
+                    "<td>".number_format($product['total']*$product['qtt'],2,",","&nbsp;")."&nbsp;€</td>",
                     //Fait passer url a traitement pour traiter l'action
-                    "<td>". "<a href='traitement.php?action=delProduit&id=$index'><button class='supprimer'>supprimer</button></a>
+                    "<td>". "<a href='traitement.php?action=delProduit&amp;id=$index'><button class='supprimer'>supprimer</button></a>
                         </td>
                     </tr>";
                     $totProducts += $product['total'];
@@ -61,11 +61,21 @@
             </table><p>"."</p>";
         }
     ?>
-    <form method="GET" action="traitement.php">
+    <!-- <form method="GET" action="traitement.php">
         <input type="hidden" name="action" value="clear"
             class="button"/>
         <button>supprimer les produits</button>
-    </form>
-   
+    </form> -->
+
+    <a href='traitement.php?action=clear'><button>supprimer les produits</button></a>
+
+    <div class="message">
+        <?php
+            if(isset($_SESSION['message'])){
+                echo $_SESSION['message'];
+                $_SESSION['message'] = "";
+            }
+        ?>
+    </div>
 </body>
 </html>

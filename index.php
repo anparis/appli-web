@@ -39,8 +39,14 @@
         </p>
     </form>
     </section>
-    <?php
-        var_dump($_POST);
-    ?>
+    <div class="message">
+        <?php
+            if(isset($_SESSION['message'])){
+                echo $_SESSION['message'];
+                $_SESSION['message'] = "";
+            }
+        ?>
+    </div>
+
 </body>
 </html>

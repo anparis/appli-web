@@ -17,13 +17,14 @@ if(isset($_GET['action'])){
         case "delQtt":
             if(isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
                 // si qtt à 0 alors on ne peut plus diminuer
-                if($_SESSION['products'][$_GET['id']]['qtt']>0)
+                if($_SESSION['products'][$_GET['id']]['qtt']>0){
                     $_SESSION['products'][$_GET['id']]['qtt']--;
-                else echo "Il n'y a deja plus de ".$_SESSION['products']['name'];
+                    
+                }
+                else $_SESSION["message"] = "Action impossible";
                 header("Location: recap.php");
                 die();
-            }
-            else $_SESSION["message"] = "Action impossible";
+            }   
             break;
         case "delProduit":
             if(isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
@@ -62,11 +63,13 @@ if(isset($_POST['submit'])){
         //on sollicite la variable globale $_SESSION
         //sert a récuperer les produits entrés par utilisateur dans un tableau de 'products'
         $_SESSION['products'][] = $product;
-        header("Location:index.php?form=success");
+        $_SESSION['message'] = "success";
+        header("Location:index.php");
         exit();
     }
     else{
-        header("Location:index.php?form=error");
+        $_SESSION['message'] = "error";
+        header("Location:index.php");
         exit();
     }
 }
