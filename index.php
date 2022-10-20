@@ -13,6 +13,7 @@
     session_start();
 ?>
     <a href="recap.php">Recapitulatif de vos commandes</a>
+    <main>
     <section class="choix">
     <h1>Ajouter un produit</h1>
     <form action="traitement.php" method="post">
@@ -39,14 +40,19 @@
         </p>
     </form>
     </section>
-    <div class="message">
+    <section class="statut">
         <?php
             if(isset($_SESSION['message'])){
-                echo $_SESSION['message'];
+                if($_SESSION['message'] == 'error')
+                    echo "<div class='error'><p>".$_SESSION['message']."</div>";
+                elseif($_SESSION['message'] == 'success')
+                    echo "<div class='success'><p>".$_SESSION['message']."</div>";
+                else
+                    echo "<div></div>";
                 $_SESSION['message'] = "";
             }
         ?>
-    </div>
-
+    </section>
+    </main>
 </body>
 </html>

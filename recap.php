@@ -12,9 +12,6 @@
     <title>Recapitulatif des produits</title>
 </head>
 <body>
-    <?php var_dump($_SESSION); 
-        var_dump($_POST);
-    ?>
     <p><a href="index.php">Revenir au commandes</a></p>
     <?php
         // Si le tableau n'est pas set ou s'il est vide => pas de produits en session
@@ -69,13 +66,17 @@
 
     <a href='traitement.php?action=clear'><button>supprimer les produits</button></a>
 
-    <div class="message">
+    <section class="statut">
         <?php
             if(isset($_SESSION['message'])){
-                echo $_SESSION['message'];
+                if($_SESSION['message']=='Action impossible')
+                    echo "<div class='error'><p>".$_SESSION['message']."</p></div>";
+                else
+                    echo "<div></div>";
                 $_SESSION['message'] = "";
             }
+           
         ?>
-    </div>
+    </section>
 </body>
 </html>

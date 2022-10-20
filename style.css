@@ -1,4 +1,28 @@
+@keyframes notification {
+    0% {
+        transform: translateX(0);
+        opacity: 0%;
+      }
+    
+      50%{
+        transform: translateX(100px);
+        opacity: 100%;
+        /* animation-play-state: paused; */
+      }
+    
+      100% {
+        transform: translateX(0);
+        opacity: 0%;
+      }
+}
+
 /* Index */
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .choix{
     margin-top: 10px;
     padding: 10px;
@@ -22,4 +46,36 @@ td{
 td.qtt{
     display: flex;
 }
+
+/* Index & Recap*/
+.statut{
+    text-transform: uppercase;
+}
+
+/* .error{
+    transition: 3s ease-in;
+} */
+
+.error p{
+    opacity: 0;
+    width: fit-content;
+    background-color: brown;
+    color: white;
+    border-radius: 5px;
+    padding:15px;
+    animation-duration: 2s;
+    animation-name: notification;
+}
+
+.success p{
+    opacity: 0;
+    width: fit-content;
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    padding:15px;
+    animation-duration: 2s;
+    animation-name: notification;
+}
+
 
