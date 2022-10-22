@@ -27,13 +27,15 @@
                     <th>Prix</th>
                     <th>Quantity</th>
                     <th>Total</th>
+                    <th></th>
+                    <th>Pics</th>
                 </tr>
             </thead>
-        <tbody>";
+        <tbody><tr>";
             $totProducts = 0;
             $nbProduits = 0;
             foreach($_SESSION['products'] as $index => $product){
-                echo "<tr>",
+                echo 
                     "<td>".$index."</td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'],2,",","&nbsp;")."&nbsp;€</td>",
@@ -45,10 +47,10 @@
                     //Fait passer url a traitement pour traiter l'action
                     "<td>". "<a href='traitement.php?action=delProduit&amp;id=$index'><button class='supprimer'>supprimer</button></a>
                         </td>
-                    </tr>";
+                    ";
                     $totProducts += $product['total'];
             }
-            echo "<tr>
+            echo "<td><img src=".$_SESSION['img']."></td></tr><tr>
                 <td>Nombres de produits : ".count($_SESSION['products'])."</td>
                 <td colspan=3>Panier total : </td>
                 <td colspan=2>".number_format($totProducts,2,",","&nbsp;")."&nbsp;€</td>

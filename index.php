@@ -36,6 +36,12 @@
             </label>
         </p>
         <p>
+            <label>
+                Photo :
+                <input type="file" name="img">
+            </label>
+        </p>
+        <p>
             <input type="submit" name="submit" value="Ajouter le produit">
         </p>
     </form>
