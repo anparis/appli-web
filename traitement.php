@@ -49,12 +49,12 @@ if (isset($_POST['submit'])) {
 
     // on recupere les data associe a upload de fichier
     $tmpName = $_FILES['img']['tmp_name'];
-    $name = $_FILES['img']['name'];
-    $size = $_FILES['img']['size'];
+    $img_name = $_FILES['img']['name'];
+    $img_size = $_FILES['img']['size'];
     // si error = 0 alors il n'y a aucune erreur
     $error = $_FILES['img']['error'];
     // gestion extensions
-    $tabExtension = explode('.', $name);
+    $tabExtension = explode('.', $img_name);
     $extension = strtolower(end($tabExtension));
     // extension que l'on accepte
     $extensions = ['jpg', 'png', 'jpeg', 'gif'];
@@ -62,13 +62,15 @@ if (isset($_POST['submit'])) {
     $tailleMax = 400000;
 
     //si mon extension est accepte alors je place l'img dans le dossier upload
-    if (in_array($extension, $extensions) && $size <= $tailleMax && $error == 0) {
-        move_uploaded_file($tmpName, './upload/' . $name);
-        $path = './upload/' . $name;
+    if (in_array($extension, $extensions) && $img_size <= $tailleMax && $error == 0) {
+        // gestion noms de fichier unique
+        $uniqueName = uniqid('',true);
+        $file = $uniqueName.".".$extension;
+        move_uploaded_file($tmpName, './upload/' . $file);
+        $path = './upload/' . $file;
     } else {
         echo "Mauvaise extension / Taille trop grande";
     }
-
     // empêche valeurs null
     if ($name && $price && $qtt && $path) {
         $product = [
