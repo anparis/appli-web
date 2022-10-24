@@ -19,7 +19,6 @@ if(isset($_GET['action'])){
                 // si qtt à 0 alors on ne peut plus diminuer
                 if($_SESSION['products'][$_GET['id']]['qtt']>0){
                     $_SESSION['products'][$_GET['id']]['qtt']--;
-                    
                 }
                 else $_SESSION["message"] = "Action impossible";
                 header("Location: recap.php");
@@ -51,13 +50,19 @@ if(isset($_POST['submit'])){
     $name = filter_input(INPUT_POST,"name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $price = filter_input(INPUT_POST,"price",FILTER_VALIDATE_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
     $qtt = filter_input(INPUT_POST,"qtt",FILTER_VALIDATE_INT);
-    
+
+    // gestion upload file img
+    $tmpName = $_FILES['img']['tmp_name'];
+    $name = $_FILES['img']['name'];
+    move_uploaded_file($tmpName, './upload/'.$name);
+    $path = './upload/'.$name;
     // empêche valeurs null
     if($name && $price && $qtt){
         $product = [
             "name" => $name,
             "price" => $price,
             "qtt" => $qtt,
+            "img" => $path,
             "total" => $price*$qtt
         ];
         //on sollicite la variable globale $_SESSION

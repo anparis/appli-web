@@ -44,7 +44,12 @@ td{
 }
 
 td.qtt{
-    display: flex;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+td img{
+    height:100px;
 }
 
 /* Index & Recap*/

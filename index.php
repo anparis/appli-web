@@ -10,13 +10,13 @@
 <body>
 <?php
 // fonction permettant de recuperer tableau de session 
-    session_start();
 ?>
     <a href="recap.php">Recapitulatif de vos commandes</a>
     <main>
     <section class="choix">
     <h1>Ajouter un produit</h1>
-    <form action="traitement.php" method="post">
+    <!-- Rajout de enctype dans form : necesasire pour upload un fichier par le formulaire -->
+    <form action="traitement.php" method="post" enctype="multipart/form-data">
         <p>
             <label>
                 Nom du produit :

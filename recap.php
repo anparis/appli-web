@@ -27,16 +27,16 @@
                     <th>Prix</th>
                     <th>Quantity</th>
                     <th>Total</th>
-                    <th></th>
                     <th>Pics</th>
+                    <th></th>
                 </tr>
             </thead>
-        <tbody><tr>";
+        <tbody>";
             $totProducts = 0;
             $nbProduits = 0;
             foreach($_SESSION['products'] as $index => $product){
                 echo 
-                    "<td>".$index."</td>",
+                    "<tr><td>".$index."</td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'],2,",","&nbsp;")."&nbsp;€</td>",
                     "<td class='qtt'>". "<a href='traitement.php?action=delQtt&amp;id=$index'><button class='add'>-</button></a>"
@@ -44,16 +44,15 @@
                     "<a href='traitement.php?action=addQtt&amp;id=$index'><button class='add'>+</button></a>".
                     "</td>",
                     "<td>".number_format($product['total']*$product['qtt'],2,",","&nbsp;")."&nbsp;€</td>",
+                    "</td><td><img src=".$product['img']."></td>",
                     //Fait passer url a traitement pour traiter l'action
-                    "<td>". "<a href='traitement.php?action=delProduit&amp;id=$index'><button class='supprimer'>supprimer</button></a>
-                        </td>
-                    ";
+                    "<td>". "<a href='traitement.php?action=delProduit&amp;id=$index'><button class='supprimer'>supprimer</button></a></tr>";
                     $totProducts += $product['total'];
             }
-            echo "<td><img src=".$_SESSION['img']."></td></tr><tr>
+            echo "<tr>
                 <td>Nombres de produits : ".count($_SESSION['products'])."</td>
                 <td colspan=3>Panier total : </td>
-                <td colspan=2>".number_format($totProducts,2,",","&nbsp;")."&nbsp;€</td>
+                <td colspan=3>".number_format($totProducts,2,",","&nbsp;")."&nbsp;€</td>
             </tr> 
             </tbody>
             </table><p>"."</p>";
